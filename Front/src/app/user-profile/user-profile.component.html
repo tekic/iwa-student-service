@@ -1,0 +1,249 @@
+<!-- Modal -->
+<div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Change password</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form (submit)="ChangePass($event)">
+          <div class="modal-body">
+            <div class="form-group row">
+              <label class="col-lg-3 col-form-label form-control-label">Old Password <label style="color: red;">*</label></label>
+              <div class="col-lg-9">
+                <input class="form-control" type="password" name="oldPass">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-lg-3 col-form-label form-control-label">New Password <label style="color: red;">*</label></label>
+              <div class="col-lg-9">
+                <input class="form-control" type="password" name="newPass">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" style="color:black">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+  <!--Ukoliko je ucenik-->
+  <div class="" *ngIf="user !== null">
+    <div class="container">
+      <div class="row my-2">
+        <div class="col-lg-8 order-lg-2">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a href="" data-target="#profile" data-toggle="tab" class="nav-link">Profile</a>
+            </li>
+          </ul>
+            <div class="tab-pane" id="profile">
+              <form (submit)="changePersonInfo($event)">
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Ime <label style="color: red;">*</label></label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="text" name="firstNameProfile" value="{{user.ime}}">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Prezime <label style="color: red;">*</label></label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="text" name="lastNameProfile" value="{{user.prezime}}">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Broj indeksa <label style="color: red;">*</label></label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="email" name="brojIndeksaProfile" value="{{user.broj_indeksa}}" disabled>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Prosecna ocena <label style="color: red;">*</label></label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="text" name="prosecnaOcenaProfile" value="{{user.prosecna_ocena}}" disabled>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Uloga <label style="color: red;">*</label></label>
+                  <div class="col-lg-3">
+                    <input class="form-control" type="text" name="ulogaProfile" value="{{user.uloga}}" disabled>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Password </label>
+                  <div class="col-lg-9">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#passwordModal">Change Password</button>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label"></label>
+                  <div class="col-lg-9">
+                    <input type="reset" class="btn btn-secondary" value="Cancel">
+                    <button type="submit" style="color:black" class="btn btn-primary">Save Changes</button>
+                  </div>
+                </div>
+              </form>
+                <div class="form-group row">
+                <button class="btn btn-primary" style="color:black" type="button" (click)="izabraniPredmeti()" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                  Izabrani predmeti
+                </button>
+              </div>
+              <div class="collapse" id="collapseExample">
+                <div class="form-group row">
+                  <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Oznaka</th>
+                        <th scope="col">Naziv predmeta</th>
+                        <th scope="col">Broj mesta</th>
+                        <th scope="col">ESPB</th>
+                        <th scope="col">Ocena</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let p of user.predmet">
+                        <th scope="row">{{p.id}}</th>
+                        <td>{{p.oznaka}}</td>
+                        <td>{{p.naziv}}</td>
+                        <td>{{p.broj_mesta}}</td>
+                        <td>{{p.espb}}</td>
+                        <td>{{p.pivot.ocena}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Profesor-->
+  <div *ngIf="profesor !== null">
+    <div class="container">
+      <div class="row my-2">
+        <div class="col-lg-8 order-lg-2">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a href="" data-target="#profile" data-toggle="tab" class="nav-link">Profile</a>
+            </li>
+          </ul>
+            <div class="tab-pane" id="profile">
+              <form (submit)="changePersonInfo($event)">
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Ime <label style="color: red;">*</label></label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="text" name="firstNameProfile" value="{{profesor.ime}}">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Prezime <label style="color: red;">*</label></label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="text" name="lastNameProfile" value="{{profesor.prezime}}">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Jmbg <label style="color: red;">*</label></label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="text" name="jmbg" value="{{profesor.jmbg}}" disabled>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Korisnicko ime <label style="color: red;">*</label></label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="email" name="korisnickoImeProfile" value="{{profesor.korisnicko_ime}}">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Usmerenje: <label style="color: red;">*</label></label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="text" name="usmerenjeProfile" value="{{profesor.usmerenje_naziv}}" disabled>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Predmet: <label style="color: red;">*</label></label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="text" name="predmetProfile" value="{{profesor.predmet_naziv}}" disabled>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Uloga <label style="color: red;">*</label></label>
+                  <div class="col-lg-3">
+                    <input class="form-control" type="text" name="uloga" value="{{profesor.uloga}}" disabled>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Password </label>
+                  <div class="col-lg-9">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#passwordModal">Change Password</button>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label"></label>
+                  <div class="col-lg-9">
+                    <input type="reset" class="btn btn-secondary" value="Cancel">
+                    <button type="submit" style="color:black" class="btn btn-primary">Save Changes</button>
+                  </div>
+                </div>
+              </form>
+                <div class="form-group row">
+                <button class="btn btn-primary" style="color:black" type="button" (click)="prikaziUcenike()" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                  Prikaz studenata
+                </button>
+              </div>
+              <div class="collapse" id="collapseExample">
+                <div class="form-group row">
+                  <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">Ime</th>
+                        <th scope="col">Prezime</th>
+                        <th scope="col">Broj Indeksa</th>
+                        <th scope="col">Ocena</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let uc of ucenici">
+                          <td>{{uc.ime}}</td>
+                          <td>{{uc.prezime}}</td>
+                          <td>{{uc.broj_indeksa}}</td>
+                          <td><button type="button" data-toggle="modal" data-target="#exampleModal1" class="btn btn-primary" style="color:black" (click)="Ocenjivanje(uc.id)">Ocena</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel1">Ocena</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form (submit)="posaljiOcenu($event)">
+            <div class="modal-body">
+                <div class="form-group">
+                  <input type="number" class="form-control" id="ocena" min="5" max="10"/>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" style="color:black">Posalji</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>

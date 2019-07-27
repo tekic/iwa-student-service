@@ -1,0 +1,44 @@
+<div id="page">
+  <nav class="colorlib-nav" role="navigation">
+    <div class="top-menu">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-2">
+            <div id="colorlib-logo"><a href="#"><label style="color:black">Studentska sluzba</label></a></div>
+          </div>
+          <div class="col-xs-10 text-right menu-1">
+            <ul>
+              <li class="active"><a href="/">Home</a></li>
+              <li><label><a *ngIf="user !== null" href="/predmeti">Predmeti</a></label></li>
+              <li><label><a *ngIf="user === null && profesor === null" href="/login">Login as Ucenik</a></label></li>
+              <li><label><a *ngIf="user === null && profesor === null" href="/registration">Sign up as Ucenik</a></label></li>
+              <li><label><a *ngIf="user !== null" href="/userProfile">{{ime}}</a></label></li>
+              <li><label><a *ngIf="profesor === null && user === null" href="/loginProf">Login as Profesor</a></label></li>
+              <li><label><a *ngIf="profesor === null && user === null" href="/registrationProf">Sign up as Profesor</a></label></li>
+              <li><label><a *ngIf="profesor !== null" href="/userProfile">{{ime}}</a></label></li>
+              <li><label><button class="transparentButton" *ngIf="user !== null" (click)="SignOut($event)" style="color: black">Sign out</button></label></li>
+              <li><label><button class="transparentButton" *ngIf="profesor !== null" (click)="SignOut($event)" style="color: black">Sign out</button></label></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="flexslider">
+    <ul class="slides">
+      <li style="background-image: url('assets/images/stud_sluzba.jpg'); background-repeat: repeat-x ">
+        <div class="overlay"></div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12 slider-text">
+              <div class="slider-text-inner text-center">
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <router-outlet></router-outlet>
+</div>
+

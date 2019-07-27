@@ -13,12 +13,13 @@ class CreatePredmetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('predmet', function (Blueprint $table) {
+        Schema::create('predmets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('oznaka',30);
-            $table->string('naziv',30);
+            $table->string('naziv',30)->unique();
             $table->bigInteger('broj_mesta');
             $table->bigInteger('espb');
+            $table->integer('usmerenje_id');
             $table->timestamps();
         });
     }

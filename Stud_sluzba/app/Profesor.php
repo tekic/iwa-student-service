@@ -11,14 +11,14 @@ class Profesor extends Model implements Authenticatable
 
     public function ucenik()
     {
-        $this->belongsToMany('App\Ucenik');
+       return $this->belongsToMany('App\Ucenik');
     }
     public function predmet()
     {
-        $this->hasMany('App\Predmet');
+       return $this->belongsTo('App\Predmet');
     }
     public function usmerenje()
     {
-        $this->belongsToMany('App\Usmerenje');
+       return $this->belongsTo('App\Usmerenje','usmerenje_id');
     }
 }

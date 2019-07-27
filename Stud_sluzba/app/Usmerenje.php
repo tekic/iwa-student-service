@@ -6,16 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Usmerenje extends Model
 {
-    public function ucenik()
+    public function ucenikUsm()
     {
-        $this->hasMany('App\Ucenik');
+        return $this->hasMany('App\Ucenik');
     }
     public function predmet()
     {
-        $this->hasMany('App\Predmet');
+       return  $this->hasMany('App\Predmet');
     }
     public function profesor()
     {
-        $this->belongsToMany('App\Profesor');
+       return $this->hasMany('App\Profesor');
     }
 }

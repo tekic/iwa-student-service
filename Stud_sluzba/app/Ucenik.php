@@ -8,17 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Ucenik extends Model  implements Authenticatable
 {
     use \Illuminate\Auth\Authenticatable;
-
+    
     public function predmet()
     {
-        $this->belongsToMany('App\Predmet');
+       return $this->belongsToMany('App\Predmet')->withPivot(['ocena']);
     }
-    public function usmerenje()
+    public function usmerenjeUcenik()
     {
-        $this->belongsTo('App\Usmerenje');
+       return $this->belongsTo('App\Usmerenje');
     }
     public function profesor()
     {
-        $this->belongsToMany('App\Profesor');
+       return $this->belongsToMany('App\Profesor');
     }
 }

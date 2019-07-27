@@ -13,13 +13,15 @@ class CreateUceniksTable extends Migration
      */
     public function up()
     {
-        Schema::create('ucenik', function (Blueprint $table) {
+        Schema::create('uceniks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('ime',30);
             $table->string('prezime',30);
-            $table->string('broj_indeksa',30);
+            $table->string('broj_indeksa',30)->unique();
             $table->string('korisnicka_lozinka',50);
-            $table->float('prosecna_ocena',1,1);
+            $table->float('prosecna_ocena',2,1);
+            $table->integer('usmerenje_id');
+            $table->string('uloga');
             $table->rememberToken();
             $table->timestamps();
         });

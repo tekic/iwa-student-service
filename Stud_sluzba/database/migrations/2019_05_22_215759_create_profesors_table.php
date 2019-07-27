@@ -17,10 +17,12 @@ class CreateProfesorsTable extends Migration
             $table->bigIncrements('id');
             $table->string('ime',30);
             $table->string('prezime',30);
-            $table->char('jmbg',13);
-            $table->string('korisnicko_ime',50);
+            $table->char('jmbg',13)->unique();
+            $table->string('korisnicko_ime',50)->unique();
             $table->string('korisnicka_lozinka',50);
-            $table->bigInteger('plata');
+            $table->bigInteger('usmerenje_id');
+            $table->bigInteger('predmet_id')->default(0);
+            $table->string('uloga');
             $table->rememberToken();
             $table->timestamps();
         });

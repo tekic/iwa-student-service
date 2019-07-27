@@ -6,19 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Predmet extends Model
 {
-
-
+    /*
+      Koristi se pivot jer je to dodata jos jedna kolona u vezi "VISE na VISE" pa da bi se
+      moglo pristupiti toj koloni u zajednickoj tabeli 
+    */
     public function ucenik()
     {
-        $this->belongsToMany('App\Ucenik');
+       return $this->belongsToMany('App\Ucenik')->withPivot(['ocena']);
     }
 
     public function profesor()
     {
-        $this->belongsTo('App\Profesor');
+       return $this->hasMany('App\Profesor');
     }
     public function usmerenje()
     {
-        $this->belongsTo('App\Usmerenje');
+       return $this->belongsTo('App\Usmerenje');
     }
 }

@@ -15,7 +15,7 @@ class CreateUsmerenjesTable extends Migration
     {
         Schema::create('usmerenjes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('sifra',30);
+            $table->string('sifra',30)->unique();
             $table->string('naziv',30);
             $table->string('oblast',30);
             $table->timestamps();
