@@ -1,0 +1,44 @@
+<h2>Izbor usmerenja kao i predgled predmeta na svakom usmerenju</h2>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Sifra</th>
+      <th scope="col">Naziv usmerenja</th>
+      <th scope="col">Oblast</th>
+      <th scope="col">Pregled predmeta</th>
+      <th scope="col">Odabrati</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let u of usmerenje">
+      <th scope="row">{{u.id}}</th>
+      <td>{{u.sifra}}</td>
+      <td>{{u.naziv}}</td>
+      <td>{{u.oblast}}</td>
+      <td><button type="button" class="btn btn-primary" (click)="PrikaziPredmete(u.id)">Prikazi</button></td>
+      <td><button type="button" class="btn btn-primary" (click)="Odaberi(u.id)">Odaberi</button></td>
+    </tr>
+  </tbody>
+</table>
+<h2>Prikaz predmeta: </h2>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Oznaka</th>
+      <th scope="col">Naziv predmeta</th>
+      <th scope="col">Broj mesta</th>
+      <th scope="col">ESPB</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of predmetCopy1">
+      <th scope="row">{{p.id}}</th>
+      <td>{{p.oznaka}}</td>
+      <td>{{p.naziv}}</td>
+      <td>{{p.broj_mesta}}</td>
+      <td>{{p.espb}}</td>
+    </tr>
+  </tbody>
+</table>
